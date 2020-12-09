@@ -1,54 +1,69 @@
 //显示当前时间
+// setInterval(function showDate() {
+//   var d = new Date();
+//   var year = d.getFullYear();
+//   var month = d.getMonth() + 1; //月从0开始
+//   var date = d.getDate();
+//   var week = d.getDay(); //星期0代表周日
+//   switch (week) {
+//     case 0:
+//       week = "日";
+//       break;
+//     case 1:
+//       week = "一";
+//       break;
+//     case 2:
+//       week = "二";
+//       break;
+//     case 3:
+//       week = "三";
+//       break;
+//     case 4:
+//       week = "四";
+//       break;
+//     case 5:
+//       week = "五";
+//       break;
+//     case 6:
+//       week = "六";
+//       break;
+//     default:
+//       break;
+//   }
+//   var hour = d.getHours().toString();
+//   var minute = d.getMinutes().toString();
+//   var sec = d.getSeconds().toString();
+//   let t =
+//     "当前时间: " +
+//     year +
+//     "年" +
+//     month +
+//     "月" +
+//     date +
+//     "日" +
+//     " " +
+//     "星期" +
+//     week +
+//     " " +
+//     hour.padStart(2, "0") +
+//     ":" +
+//     minute.padStart(2, "0") +
+//     ":" +
+//     sec.padStart(2, "0");
+//   $(".showTime").html(t);
+// }, 1000);
+
 setInterval(function showDate() {
   var d = new Date();
   var year = d.getFullYear();
-  var month = d.getMonth() + 1; //月从0开始
+  var month = (d.getMonth() + 1 + "").padStart(2, "0"); //月从0开始
   var date = d.getDate();
   var week = d.getDay(); //星期0代表周日
-  switch (week) {
-    case 0:
-      week = "日";
-      break;
-    case 1:
-      week = "一";
-      break;
-    case 2:
-      week = "二";
-      break;
-    case 3:
-      week = "三";
-      break;
-    case 4:
-      week = "四";
-      break;
-    case 5:
-      week = "五";
-      break;
-    case 6:
-      week = "六";
-      break;
-    default:
-      break;
-  }
-  var hour = d.getHours().toString();
-  var minute = d.getMinutes().toString();
-  var sec = d.getSeconds().toString();
-  let t =
-    "当前时间: " +
-    year +
-    "年" +
-    month +
-    "月" +
-    date +
-    "日" +
-    "星期" +
-    week +
-    " " +
-    hour.padStart(2, "0") +
-    ":" +
-    minute.padStart(2, "0") +
-    ":" +
-    sec.padStart(2, "0");
+  var arr = ["日", "一", "二", "三", "四", "五", "六"];
+  var hour = (d.getHours() + "").padStart(2, "0");
+  var minute = (d.getMinutes() + "").padStart(2, "0");
+  var sec = (d.getSeconds() + "").padStart(2, "0");
+  var t = `${year}年${month}月${date}日 ${hour}:${minute}:${sec} 星期${arr[week]}`;
   $(".showTime").html(t);
 }, 1000);
 
@@ -59,6 +74,12 @@ setInterval(function showDate() {
   // var myChart = echarts.init(document.querySelector(".bar .chart"));
   // 指定图表的配置项和数据
   let option = {
+    dataZoom: [
+      {
+        type: "inside",
+        xAxisIndex: 0,
+      },
+    ],
     color: ["#2f89cf"],
     tooltip: {
       trigger: "axis",
